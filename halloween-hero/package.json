@@ -1,0 +1,19 @@
+{
+  "name": "halloween-hero",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "webgl-party":"git+https://3fe5f10df581096379401fa2551aefd1d0604d38:x-oauth-basic@github.hugeinc.com/iguevara/webgl-party.git",
+    "three": "^0.130.1",
+    "gsap": "^3.7.1",
+    "dat.gui": "^0.7.7"
+  },
+  "devDependencies": {
+    "typescript": "^4.3.2",
+    "vite": "^2.5.4"
+  }
+}

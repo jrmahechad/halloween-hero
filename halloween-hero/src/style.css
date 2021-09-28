@@ -1,0 +1,25 @@
+.hero {
+  --hero-font-size: clamp(1.5rem, 7vw, 7rem);
+  display: grid;
+  grid-template-columns: 1fr minmax(0, 0.5fr) 1fr;
+  background-color: var(--huge-black);
+  min-height: calc(var(--hero-font-size) * 5);
+}
+
+.hero > .model {
+  grid-column: 2 / span 2;
+  grid-row: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.hero > .copy {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  align-self: center;
+  padding-left: 0.5em;
+  font-size: var(--hero-font-size);
+  color: var(--huge-white);
+  /* We need to set the z-index to force the div to be on top. */
+  z-index: 1;
+}
