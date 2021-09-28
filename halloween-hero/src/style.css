@@ -1,12 +1,12 @@
 @font-face {
   font-family: Huge;
-  src: url(../../fonts/HugeGothic-Bold.woff) format("woff"),
-    url(../../fonts/HugeGothic-Bold.ttf) format("truetype");
+  src: url(https://s3.amazonaws.com/examples.webgl-party/fonts/HugeGothic-Bold.woff) format("woff"),
+    url(https://s3.amazonaws.com/examples.webgl-party/fonts/HugeGothic-Bold.ttf) format("truetype");
 }
 
 @font-face {
   font-family: TobiasRegular;
-  src: url(../../fonts/Tobias-Regular.ttf) format("truetype");
+  src: url(https://s3.amazonaws.com/examples.webgl-party/fonts/Tobias-Regular.ttf) format("truetype");
 }
 
 :root {

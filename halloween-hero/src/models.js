@@ -4,7 +4,7 @@ import { GltfModelLoader } from "webgl-party/packages/h3w/src";
 async function _loadModels(models) {
   const promises = [];
   const gltfLoader = GltfModelLoader.getInstance();
-  await gltfLoader.setDracoLoader(`${import.meta.env.BASE_URL}draco/`);
+  await gltfLoader.setDracoLoader(`https://s3.amazonaws.com/examples.webgl-party/draco/`);
 
   const keys = [];
 
@@ -41,35 +41,35 @@ function _setupModelFallback() {
 async function loadHeroModels() {
   const models = new Map();
   models.set("bookcase", {
-    url: `/models/halloween/bookcase.gltf`,
+    url: `https://s3.amazonaws.com/examples.webgl-party/models/halloween/bookcase.gltf`,
     position: new Vector3(0, -2.5, 0),
     scale: new Vector3(1.5, 1.5, 1.5),
     rotation: new Vector3(0, 0, 0),
     display: true,
   });
   models.set("candybag", {
-    url: `/models/halloween/candy-bag.gltf`,
+    url: `https://s3.amazonaws.com/examples.webgl-party/models/halloween/candy-bag.gltf`,
     position: new Vector3(0.8, 0.75, 0),
     scale: new Vector3(0.45, 0.45, 0.45),
     rotation: new Vector3(0, -(Math.PI * 1) / 8, 0),
     display: true,
   });
   models.set("candy", {
-    url: `/models/halloween/candy.gltf`,
+    url: `https://s3.amazonaws.com/examples.webgl-party/models/halloween/candy.gltf`,
     position: new Vector3(0.8, 0.9, 0),
     scale: new Vector3(0.3, 0.3, 0.3),
     rotation: new Vector3(0, (Math.PI * 1) / 1, 0),
     display: true,
   });
   models.set("jackOLantern", {
-    url: `/models/halloween/jack-o-lantern.gltf`,
+    url: `https://s3.amazonaws.com/examples.webgl-party/models/halloween/jack-o-lantern.gltf`,
     position: new Vector3(-0.8, 0.7, 0),
     scale: new Vector3(0.5, 0.5, 0.5),
     rotation: new Vector3(0, (Math.PI * 1) / 8, 0),
     display: true,
   });
   models.set("book", {
-    url: `/models/halloween/book.gltf`,
+    url: `https://s3.amazonaws.com/examples.webgl-party/models/halloween/book.gltf`,
     position: new Vector3(0.69, -0.65, 0.25),
     scale: new Vector3(1.5, 1.5, 1.5),
     rotation: new Vector3(0, -Math.PI / 4, Math.PI * 1.5),
