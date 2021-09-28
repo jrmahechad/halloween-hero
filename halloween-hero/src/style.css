@@ -1,3 +1,32 @@
+@font-face {
+  font-family: Huge;
+  src: url(../../fonts/HugeGothic-Bold.woff) format("woff"),
+    url(../../fonts/HugeGothic-Bold.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: TobiasRegular;
+  src: url(../../fonts/Tobias-Regular.ttf) format("truetype");
+}
+
+:root {
+  --huge-black: #141414;
+  --huge-green: #3dfb8b;
+  --huge-gray: #f8f7ff;
+  --huge-white: #ffffff;
+
+  --huge-font: Huge;
+  --tobias-font: TobiasRegular;
+
+  font-family: var(--tobias-font);
+  font-size: 14px;
+}
+
+h1,
+h2 {
+  font-family: var(--huge-font);
+}
+
 .hero {
   --hero-font-size: clamp(1.5rem, 7vw, 7rem);
   display: grid;
