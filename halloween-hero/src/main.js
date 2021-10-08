@@ -1,8 +1,8 @@
 import "./style.css";
 
-import { Clock, Mesh, MeshBasicMaterial, Vector3 } from "three";
+import { Clock } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { TweakManager, MouseManager } from "webgl-party/packages/h3w/src";
+import { MouseManager } from "webgl-party/packages/h3w/src";
 import { loadHeroModels } from "./models";
 import { setupLights, setupLightHelpers, createLightTweaks } from "./lights";
 import { setupCamera, setupScene } from "./scene";
@@ -11,6 +11,8 @@ import {
   getCandyIsAnimating,
   getBookIsAnimating,
   gsapBookAnimation,
+  gsapJackOLanternAnimation,
+  getJackOLanternIsAnimating,
 } from "./animations";
 
 const heroes = document.querySelectorAll(".hero > canvas");
@@ -29,6 +31,7 @@ async function loadModels() {
 
   mouseManager.addEvent("mousemove", _createCandyBagIntersectable());
   mouseManager.addEvent("mousemove", _createBookIntersectable());
+  mouseManager.addEvent("mousemove", _createJackOLanternIntersectable());
 }
 
 loadModels();
@@ -71,12 +74,29 @@ function animateCandy(candy) {
   gsapCandyAnimation(candy);
 }
 
+function animateJackOLantern(jackOLantern) {
+  if (getJackOLanternIsAnimating()) {
+    return;
+  }
+  gsapJackOLanternAnimation(jackOLantern);
+}
+
 function animateBook(book) {
   if (getBookIsAnimating()) {
     return;
   }
 
   gsapBookAnimation(book);
+}
+
+function _createJackOLanternIntersectable() {
+  const jackOLantern = sceneObjects.get("jackOLantern");
+  return {
+    mesh: jackOLantern.sceneObj,
+    enter: function enterJackOLantern() {
+      animateJackOLantern(jackOLantern.sceneObj);
+    },
+  };
 }
 
 function _createCandyBagIntersectable() {
@@ -116,16 +136,6 @@ scene.add(...lights);
 scene.add(directionalLight.target);
 scene.add(pointLightHelper);
 scene.add(directionalLightHelper);
-
-//Tweaks
-const tweakManager = new TweakManager();
-const lightTweaks = createLightTweaks(lightsProperties, lights, [
-  pointLightHelper,
-  directionalLightHelper,
-]);
-
-tweakManager.add(lightTweaks);
-tweakManager.getGUI().close();
 
 //
 const mouseManager = new MouseManager(canvas, camera);

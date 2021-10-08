@@ -1,7 +1,65 @@
 import { gsap, Power2 } from "gsap";
 let candyIsAnimating = false;
+let jackOLanternIsAnimating = false;
 let bookIsAnimating = false;
 let bookRotationLeft = true;
+
+function gsapJackOLanternAnimation(jackOLantern) {
+  jackOLanternIsAnimating = true;
+  const animationValues = {
+    durations: { start: 0, step1: 1 / 10, step2: 1 / 10 },
+    initialPosition: {
+      x: jackOLantern.position.x,
+      y: jackOLantern.position.y,
+      z: jackOLantern.position.z,
+    },
+    initialRotation: {
+      x: jackOLantern.rotation.x,
+      y: jackOLantern.rotation.y,
+      z: jackOLantern.rotation.z,
+    },
+  };
+  const mainTimeline = gsap.timeline();
+  const bagTimeline = gsap.timeline();
+  bagTimeline.add("start", animationValues.durations.start);
+  bagTimeline.to(
+    jackOLantern.rotation,
+    {
+      z: animationValues.initialRotation.z + Math.PI * 0.025,
+      duration: animationValues.durations.step1,
+    },
+    "start"
+  );
+  bagTimeline.to(jackOLantern.rotation, {
+    z: animationValues.initialRotation.z - Math.PI * 0.025,
+    duration: animationValues.durations.step1,
+  });
+  bagTimeline.to(
+    jackOLantern.rotation,
+    {
+      x: animationValues.initialRotation.x + Math.PI * 0.025,
+      duration: animationValues.durations.step2,
+    },
+    "start"
+  );
+  bagTimeline.to(jackOLantern.rotation, {
+    x: animationValues.initialRotation.x - Math.PI * 0.025,
+    duration: animationValues.durations.step2,
+  });
+  bagTimeline.repeat(2);
+  mainTimeline.add(bagTimeline, 0);
+  mainTimeline.to(jackOLantern.rotation, {
+    z: animationValues.initialRotation.z,
+    duration: animationValues.durations.step1,
+  });
+  mainTimeline.to(jackOLantern.rotation, {
+    x: animationValues.initialRotation.x,
+    duration: animationValues.durations.step1,
+  });
+  mainTimeline.call(() => {
+    jackOLanternIsAnimating = false;
+  });
+}
 
 function gsapCandyAnimation(candy) {
   candyIsAnimating = true;
@@ -90,6 +148,10 @@ function getCandyIsAnimating() {
   return candyIsAnimating;
 }
 
+function getJackOLanternIsAnimating() {
+  return jackOLanternIsAnimating;
+}
+
 function getBookIsAnimating() {
   return bookIsAnimating;
 }
@@ -99,4 +161,6 @@ export {
   getCandyIsAnimating,
   gsapBookAnimation,
   gsapCandyAnimation,
+  gsapJackOLanternAnimation,
+  getJackOLanternIsAnimating,
 };
