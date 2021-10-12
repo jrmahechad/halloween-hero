@@ -1,8 +1,11 @@
 import "./style.css";
 
 import { Clock } from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { MouseManager } from "webgl-party/packages/h3w/src";
+import {
+  TweakManager,
+  MouseManager,
+  CustomOrbitControls,
+} from "webgl-party/packages/h3w/src";
 import { loadHeroModels } from "./models";
 import { setupLights, setupLightHelpers, createLightTweaks } from "./lights";
 import { setupCamera, setupScene } from "./scene";
@@ -141,8 +144,7 @@ scene.add(directionalLightHelper);
 const mouseManager = new MouseManager(canvas, camera);
 
 // Controls
-const controls = new OrbitControls(camera, canvas);
-controls.enableDamping = true;
+const controls = new CustomOrbitControls(camera, canvas);
 
 // Model
 let model;
